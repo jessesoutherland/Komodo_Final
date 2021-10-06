@@ -35,7 +35,7 @@ namespace Claims_Console
                 switch (userInput)
                 {
                     case "1":
-                        ShowAllClaims();
+                        ShowClaims();
                         break;
                     case "2":
                         DoNextClaim();
@@ -53,7 +53,7 @@ namespace Claims_Console
                 }
             }
         }
-        private void ShowAllClaims()
+        private void ShowClaims()
         {
             Console.Clear();
 
@@ -184,8 +184,8 @@ namespace Claims_Console
         {
             Queue<Claims> listOfClaims = _repo.ShowAllClaims();
 
-            string[] titles = new string[] { "ClaimID", "Type", "Description", "Amount", "DateOfAccident", "DateOfClaim", "IsValid" };
-            Console.WriteLine($"{titles[0],-10}{titles[1],-10}{titles[2],-30}{titles[3],-15}{titles[4],-20}{titles[5],-20}{titles[6],-15}");
+            string[] topics = new string[] { "ClaimID", "Type", "Description", "Amount", "DateOfAccident", "DateOfClaim", "IsValid" };
+            Console.WriteLine($"{topics[0],-10}{topics[1],-10}{topics[2],-30}{topics[3],-15}{topics[4],-20}{topics[5],-20}{topics[6],-15}");
             foreach (Claims claim in listOfClaims)
             {
                 Console.Write($"{claim.ClaimID,-10}{claim.ClaimType,-10}{claim.Description,-30}{claim.Amount,-15}{claim.DateOfAccident,-20:MM/dd/yyyy}{claim.DateOfClaim,-20:MM/dd/yyyy}{claim.IsValid,-15}\n");

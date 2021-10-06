@@ -6,49 +6,53 @@ using System.Threading.Tasks;
 
 namespace Badges_Console
 {
-    class Badges_Repo
+    public class Badges_Repo
     {
         private readonly Dictionary<int, Badges> _badgeDirectory = new Dictionary<int, Badges>();
 
-        //create new badge
-        public bool AddNewBadge(int badgeID, List<string> doors)
+        //create
+        public bool AddNewBadge(Badges badges)
         {
-            Badges newBadge = new Badges(badgeID, doors); //Why do I need this
-            
             int startingCount = _badgeDirectory.Count;
-
-            _badgeDirectory.Add(badgeID, newBadge); //Why doesn't doors work instead of newBadge
+            
+            _badgeDirectory.Add(badges.BadgeID, badges);
 
             bool wasAdded = (_badgeDirectory.Count > startingCount) ? true : false;
 
             return wasAdded;
         }
-
-        //show all badges
-        public Dictionary<int, Badges> ShowAllBadges()
-        {
-            return _badgeDirectory;
-        }
-
-        public Badges GetBadgeByID(int badgeID)
-        {
-            return _badgeDirectory[badgeID];
-        }
-
-        //add doors
-        public bool AddDoors(int badgeID, List<string> newDoors)
+        public bool AddDoors(int badgeID, string newDoor)
         {
             Badges targetBadge = GetBadgeByID(badgeID);
             int startingCount = targetBadge.DoorNames.Count();
 
-            targetBadge.DoorNames.AddRange(newDoors);
+            targetBadge.DoorNames.Add(newDoor);
 
             bool wasAdded = (targetBadge.DoorNames.Count > startingCount) ? true : false;
 
             return wasAdded;
         }
-
-        //delete doors
+        
+        //show
+        public Dictionary<int, Badges> ShowAllBadges()
+        {
+            return _badgeDirectory;
+        }
+        public Badges GetBadgeByID(int badgeID)
+        {
+            return _badgeDirectory[badgeID];
+        }
+        public string GetDoorsByID(int badgeID)
+        {
+            Badges targetBadge = GetBadgeByID(badgeID);
+            if (targetBadge != null)
+            {
+                return string.Join(", ", targetBadge.DoorNames);
+            }
+            return "Badge Not Found";
+        }
+        
+        //delete
         public bool RemoveDoors(int badgeID, string door)
         {
             Badges targetBadge = GetBadgeByID(badgeID);

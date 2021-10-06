@@ -14,6 +14,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Badges_Tests", "Badges_Tests\Badges_Tests.csproj", "{B062AC92-7C4D-4626-A41D-F5014D6709FC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{39A8340F-6610-403D-9C2B-2707D9A7C6FC}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Claims_Tests", "Claims_Tests\Claims_Tests.csproj", "{6210F511-FC99-4693-AE56-B8D5E5F818CE}"
 EndProject
