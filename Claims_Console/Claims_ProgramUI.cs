@@ -73,6 +73,9 @@ namespace Claims_Console
             if (input == "y")
             {
                 _repo._claimsDirectory.Dequeue();
+
+                Console.WriteLine("\nThe claim has been handled");
+                PressAnyKeyToContinue();
             }
             else if(input == "n")
             {
@@ -114,23 +117,8 @@ namespace Claims_Console
             newClaim.Description = Console.ReadLine();
 
             Console.WriteLine("\nAmount of damage:");
-            var amount = Console.ReadLine();
+            newClaim.Amount = Convert.ToDecimal(Console.ReadLine());
 
-            decimal cost = default;
-
-            while (cost == default)
-            {
-                bool parseSuccess = decimal.TryParse(amount, out cost);
-                if (parseSuccess)
-                {
-                    newClaim.Amount = cost;
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("\nThat is not a number. Please try again");
-                }
-            }
             Console.WriteLine("\nDate of accident:");
             newClaim.DateOfAccident = DateTime.Parse(Console.ReadLine());
 
@@ -188,7 +176,7 @@ namespace Claims_Console
             Console.WriteLine($"{topics[0],-10}{topics[1],-10}{topics[2],-30}{topics[3],-15}{topics[4],-20}{topics[5],-20}{topics[6],-15}");
             foreach (Claims claim in listOfClaims)
             {
-                Console.Write($"{claim.ClaimID,-10}{claim.ClaimType,-10}{claim.Description,-30}{claim.Amount,-15}{claim.DateOfAccident,-20:MM/dd/yyyy}{claim.DateOfClaim,-20:MM/dd/yyyy}{claim.IsValid,-15}\n");
+                Console.Write($"{claim.ClaimID,-10}{claim.ClaimType,-10}{claim.Description,-30}${claim.Amount,-15}{claim.DateOfAccident,-20:MM/dd/yyyy}{claim.DateOfClaim,-20:MM/dd/yyyy}{claim.IsValid,-15}\n");
             }
         }
     }

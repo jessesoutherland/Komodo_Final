@@ -43,6 +43,7 @@ namespace Badges_Console
                         break;
                     case "3":
                         ListBadges();
+                        PressAnyKeyToContinue();
                         break;
                     case "4":
                         isRunning = false;
@@ -125,45 +126,68 @@ namespace Badges_Console
             switch (userInput)
             {
                 case "1":
-                    //Console.Clear();
-
-                    Console.WriteLine("\nWhich door would you like to remove?");
-                    string doorRInput = Console.ReadLine().ToUpper();
-
-                    bool wasRemoved = _repo.RemoveDoors(targetBadge.BadgeID, doorRInput);
-                    
-                    if (wasRemoved)
+                    string input1 = default;
+                    do
                     {
-                        Console.WriteLine("\n\nDoor was removed");
-                        string doorList1 = _repo.GetDoorsByID(badgeIDInput);
-                        Console.WriteLine($"\n{targetBadge.BadgeID} has access to doors {doorList1}.");
+                        Console.WriteLine("\nWhich door would you like to remove?");
+                        string doorRInput = Console.ReadLine().ToUpper();
 
-                    }
-                    else
-                    {
-                        Console.WriteLine("\nThe door could not be removed. Please try again");
-                    }
+                        bool wasRemoved = _repo.RemoveDoors(targetBadge.BadgeID, doorRInput);
+
+                        if (wasRemoved)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Door was removed");
+                            string doorList1 = _repo.GetDoorsByID(badgeIDInput);
+                            Console.WriteLine($"\n{targetBadge.BadgeID} has access to doors {doorList1}.");
+                            
+                            Console.WriteLine("\nWould you like to remove another door? (y/n)");
+                            input1 = Console.ReadLine();
+
+                            if (input1 == "n")
+                            {
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nThe door could not be removed. Please try again");
+                        }
+                    } while (input1 == "y");
 
                     PressAnyKeyToContinue();
                     break;
                 case "2":
-                    //Console.Clear();
+                    string input2 = default;
 
-                    Console.WriteLine("\nPlease enter the door you would like to add:");
-                    string doorAInput = Console.ReadLine().ToUpper();
-
-                    bool wasAdded = _repo.AddDoors(targetBadge.BadgeID, doorAInput);
-
-                    if (wasAdded)
+                    do
                     {
-                        Console.WriteLine("\n\nDoor was added");
-                        string doorList2 = _repo.GetDoorsByID(badgeIDInput);
-                        Console.WriteLine($"\n{targetBadge.BadgeID} has access to doors {doorList2}");
-                    }
-                    else
-                    {
-                        Console.WriteLine("\nThe door could not be added. Please try again");
-                    }
+                        Console.WriteLine("\nPlease enter the door you would like to add:");
+                        string doorAInput = Console.ReadLine().ToUpper();
+
+                        bool wasAdded = _repo.AddDoors(targetBadge.BadgeID, doorAInput);
+
+                        if (wasAdded)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Door was added");
+                            string doorList2 = _repo.GetDoorsByID(badgeIDInput);
+                            Console.WriteLine($"\n{targetBadge.BadgeID} has access to doors {doorList2}");
+
+                            Console.WriteLine("\nWould you like to add another door? (y/n)");
+                            input2 = Console.ReadLine();
+
+                            if (input2 == "n")
+                            {
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nThe door could not be added. Please try again");
+                        }
+
+                    } while (input2 == "y");
 
                     PressAnyKeyToContinue();
                     break;
@@ -182,8 +206,6 @@ namespace Badges_Console
             Console.Clear();
 
             DisplayAllBadges();
-
-            PressAnyKeyToContinue();
         }
 
         private void SeedData()
