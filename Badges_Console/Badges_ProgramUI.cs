@@ -117,8 +117,8 @@ namespace Badges_Console
             Console.WriteLine
                 (
                 "\n\nWhat would you like to do?\n" +
-                "1. Remove a door\n" +
-                "2. Add a door\n" +
+                "1. Remove a Door\n" +
+                "2. Add a Door\n" +
                 "3. Return to Main menu"
                 );
             string userInput = Console.ReadLine();
