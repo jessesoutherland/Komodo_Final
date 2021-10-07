@@ -6,7 +6,6 @@
 <br/>
 
 ## **Komodo Cafe Management App**
-==================================
 <br/>
 <br/>
 
@@ -25,7 +24,6 @@ There are three functions to this app.
 
 
 ## **Komodo Claims Management App**
-====================================
 <br/>
 <br/>
 
@@ -47,7 +45,6 @@ There are three functions to this app as well.
 
 
 ## **Komodo Badge Management App**
-====================================
 <br/>
 <br/>
 
